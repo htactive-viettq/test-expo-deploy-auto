@@ -19,6 +19,8 @@ import { Block, GalioProvider } from "galio-framework";
 
 import AppContainer from "./navigation/Screens";
 import { Images, products, materialTheme } from "./constants/";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 // cache app images
 const assetImages = [
@@ -57,12 +59,14 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <GalioProvider theme={materialTheme}>
-          <Block flex>
-            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-            <AppContainer />
-          </Block>
-        </GalioProvider>
+        <Provider store={store}>
+          <GalioProvider theme={materialTheme}>
+            <Block flex>
+              {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+              <AppContainer />
+            </Block>
+          </GalioProvider>
+        </Provider>
       );
     }
   }

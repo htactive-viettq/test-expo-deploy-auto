@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
   Image,
@@ -19,12 +19,18 @@ import {
 } from "galio-framework";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAvoidingView } from "react-native";
-
-const { height, width } = Dimensions.get("screen");
+import { connect } from "react-redux";
+import * as actions from "../redux/actions";
 import { Images, materialTheme } from "../constants/";
 import { HeaderHeight } from "../constants/utils";
 
-const LoginScreen = ({ navigation }) => {
+const { height, width } = Dimensions.get("screen");
+
+const LoginScreen = ({ navigation, login }) => {
+  const [account, setAccount] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemenber] = useState(true);
+
   const iconUsername = (
     <Icon
       size={16}
@@ -88,12 +94,16 @@ const LoginScreen = ({ navigation }) => {
               >
                 <Input
                   left
+                  onChangeText={text => setAccount(text)}
+                  type="number-pad"
                   color="black"
                   iconContent={iconUsername}
                   placeholder="Số điện thoại"
+                  onCha
                 />
                 <Input
                   password
+                  onChangeText={text => setPassword(text)}
                   viewPass
                   left
                   iconContent={iconPassword}
@@ -103,6 +113,10 @@ const LoginScreen = ({ navigation }) => {
               </Block>
               <Block style={{ marginBottom: theme.SIZES.BASE * 1.5 }}>
                 <Checkbox
+                  initialValue={remember}
+                  onChange={value => {
+                    setRemenber(value);
+                  }}
                   color="warning"
                   labelStyle={{ color: "#fff" }}
                   label="Ghi nhớ mật khẩu"
@@ -112,7 +126,7 @@ const LoginScreen = ({ navigation }) => {
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
-                onPress={() => navigation.navigate("Home")}
+                onPress={() => login(account, password, remember, navigation)}
               >
                 ĐĂNG NHẬP
               </Button>
@@ -123,8 +137,15 @@ const LoginScreen = ({ navigation }) => {
     </Block>
   );
 };
-
-export default LoginScreen;
+const mapDispatchToProps = dispatch => ({
+  login: (account, password, remember, navigation) =>
+    dispatch({
+      type: actions.LOGIN_REQUEST,
+      infoLogin: { account, password, remember },
+      navigation: navigation
+    })
+});
+export default connect(null, mapDispatchToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
   container: {

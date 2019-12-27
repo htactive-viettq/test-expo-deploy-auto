@@ -15,6 +15,7 @@ import OnboardingScreen from "../screens/Onboarding";
 import ProfileScreen from "../screens/Profile";
 import ProScreen from "../screens/Pro";
 import SettingsScreen from "../screens/Settings";
+import AuthLoadingScreen from "../screens/AuthLoading";
 
 import Menu from "./Menu";
 import Header from "../components/Header";
@@ -235,14 +236,16 @@ const AppStack = createDrawerNavigator(
   Menu
 );
 
-const CheckAuth = createSwitchNavigator({
-  LoginScreen: {
-    screen: LoginScreen
+const CheckAuth = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    LoginScreen: LoginScreen,
+    Auth: AppStack
   },
-  Auth: {
-    screen: AppStack
+  {
+    initialRouteName: "AuthLoading"
   }
-});
+);
 
 const AppContainer = createAppContainer(CheckAuth);
 export default AppContainer;
