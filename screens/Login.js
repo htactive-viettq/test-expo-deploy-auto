@@ -46,7 +46,7 @@ const LoginScreen = ({ navigation }) => {
       <StatusBar barStyle="light-content" />
       <Block flex>
         <ImageBackground
-          source={Images.Login}
+          source={{ uri: Images.Pro }}
           style={{ height: height / 1.8, width, zIndex: 1 }}
         >
           <LinearGradient
@@ -56,11 +56,6 @@ const LoginScreen = ({ navigation }) => {
         </ImageBackground>
 
         <KeyboardAvoidingView style={styles.padded} behavior="padding" enabled>
-          <Image
-            style={{ height: 200, width: "100%" }}
-            source={Images.Logo}
-            resizeMode="contain"
-          ></Image>
           <Block space="between">
             <Block>
               <Block>

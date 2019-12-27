@@ -9,14 +9,12 @@ import {
 
 import { Block, Text, theme } from "galio-framework";
 
-import {
-  ComponentsScreen,
-  HomeScreen,
-  OnboardingScreen,
-  ProfileScreen,
-  ProScreen,
-  SettingsScreen
-} from "../screens";
+import ComponentsScreen from "../screens/Components";
+import HomeScreen from "../screens/Home";
+import OnboardingScreen from "../screens/Onboarding";
+import ProfileScreen from "../screens/Profile";
+import ProScreen from "../screens/Pro";
+import SettingsScreen from "../screens/Settings";
 
 import Menu from "./Menu";
 import Header from "../components/Header";
