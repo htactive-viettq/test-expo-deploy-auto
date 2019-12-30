@@ -18,7 +18,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAvoidingView } from "react-native";
 import { connect } from "react-redux";
-import * as actions from "../modules/actions";
+import { LOGIN_REQUEST } from "../modules/actions";
 import { Images, materialTheme } from "../constants/";
 import { HeaderHeight } from "../constants/utils";
 
@@ -143,7 +143,7 @@ const LoginScreen = ({ navigation, login }) => {
 const mapDispatchToProps = dispatch => ({
   login: (account, password, remember) =>
     dispatch({
-      type: actions.LOGIN_REQUEST,
+      type: LOGIN_REQUEST,
       infoLogin: { account, password, remember }
     })
 });
