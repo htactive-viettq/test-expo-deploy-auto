@@ -4,7 +4,7 @@ import { login } from "../../api/login";
 
 function* loginRequestHandle(action) {
   const { infoLogin } = action || {};
-  yield call(login, infoLogin.account, infoLogin.password);
+  yield call(login, infoLogin.account, infoLogin.password, infoLogin.remember);
 }
 
 export default function*() {

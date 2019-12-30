@@ -3,8 +3,9 @@ import LinkApi from "../configs/linkApi";
 import PushAlert from "../components/Alert";
 import { saveListStore } from "../storages/list-store";
 import { saveUser } from "../storages/user-token";
+import { NavigationActions } from "react-navigation";
 
-async function login(username, password) {
+async function login(username, password, remember) {
   const response = await get(
     `${LinkApi}/Login?password=${password}&phone_number=${username}&`
   );
@@ -34,14 +35,14 @@ async function login(username, password) {
         TaiKhoan.isThungRac === "0"
       ) {
         saveListStore(JSON.stringify(CuaHangList));
-        if (payload.remember) {
+        if (remember) {
           saveUser(JSON.stringify(TaiKhoan));
         }
         if (TaiKhoan.isTaiKhoanCap2 == "0") {
-          yield put(NavigationActions.navigate({ routeName: "Home" }));
+          NavigationActions.navigate({ routeName: "Home" });
         }
         if (TaiKhoan.isTaiKhoanCap2 == "1") {
-          yield put(NavigationActions.navigate({ routeName: "Home" }));
+          NavigationActions.navigate({ routeName: "Home" });
         }
       }
       break;
