@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
   Image,
@@ -18,7 +18,7 @@ import {
   Checkbox
 } from "galio-framework";
 import { LinearGradient } from "expo-linear-gradient";
-import { KeyboardAvoidingView, AsyncStorage } from "react-native";
+import { KeyboardAvoidingView } from "react-native";
 import { connect } from "react-redux";
 import * as actions from "../redux/actions";
 import { Images, materialTheme } from "../constants/";
@@ -30,9 +30,7 @@ const LoginScreen = ({ navigation, login }) => {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemenber] = useState(true);
-  useEffect(() => {
-    AsyncStorage.clear();
-  }, []);
+
   const iconUsername = (
     <Icon
       size={16}
@@ -101,7 +99,6 @@ const LoginScreen = ({ navigation, login }) => {
                   color="black"
                   iconContent={iconUsername}
                   placeholder="Số điện thoại"
-                  onCha
                 />
                 <Input
                   password
@@ -119,8 +116,7 @@ const LoginScreen = ({ navigation, login }) => {
                   onChange={value => {
                     setRemenber(value);
                   }}
-                  color="warning"
-                  labelStyle={{ color: "#fff" }}
+                  labelStyle={{ color: materialTheme.COLORS.WHITE }}
                   label="Ghi nhớ mật khẩu"
                 />
               </Block>
@@ -128,7 +124,7 @@ const LoginScreen = ({ navigation, login }) => {
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
-                onPress={() => login(account, password, remember, navigation)}
+                onPress={() => login(account, password, remember)}
               >
                 ĐĂNG NHẬP
               </Button>
@@ -141,11 +137,10 @@ const LoginScreen = ({ navigation, login }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  login: (account, password, remember, navigation) =>
+  login: (account, password, remember) =>
     dispatch({
       type: actions.LOGIN_REQUEST,
-      infoLogin: { account, password, remember },
-      navigation: navigation
+      infoLogin: { account, password, remember }
     })
 });
 export default connect(null, mapDispatchToProps)(LoginScreen);

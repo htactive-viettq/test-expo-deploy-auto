@@ -1,30 +1,23 @@
-import React, { Component } from "react";
-import {
-  ActivityIndicator,
-  AsyncStorage,
-  StatusBar,
-  StyleSheet,
-  View
-} from "react-native";
+import React, { useEffect } from "react";
+import { ActivityIndicator, StatusBar, View } from "react-native";
+import { getUser } from "../storages/user-token";
 
-export class AuthLoading extends Component {
-  componentDidMount() {
-    this._bootstrapAsync();
-  }
+const AuthLoading = ({ navigation }) => {
+  useEffect(() => {
+    _bootstrapAsync();
+  }, []);
 
-  _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem("infoAccount");
-    this.props.navigation.navigate(userToken ? "Home" : "LoginScreen");
+  const _bootstrapAsync = async () => {
+    const userToken = await getUser();
+    navigation.navigate(userToken ? "Home" : "LoginScreen");
   };
 
-  render() {
-    return (
-      <View>
-        <ActivityIndicator />
-        <StatusBar barStyle="default" />
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      <ActivityIndicator />
+      <StatusBar barStyle="default" />
+    </View>
+  );
+};
 
 export default AuthLoading;

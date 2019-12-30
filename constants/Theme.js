@@ -1,5 +1,6 @@
 export default {
   COLORS: {
+    WHITE: "#FFFFFF",
     DEFAULT: "#DCDCDC",
     PRIMARY: "#9C26B0",
     LABEL: "#FE2472",
