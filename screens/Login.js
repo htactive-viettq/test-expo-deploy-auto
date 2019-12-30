@@ -20,7 +20,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAvoidingView } from "react-native";
 import { connect } from "react-redux";
-import * as actions from "../redux/actions";
+import * as actions from "../modules/actions";
 import { Images, materialTheme } from "../constants/";
 import { HeaderHeight } from "../constants/utils";
 

@@ -19,7 +19,7 @@ import { Block, GalioProvider } from "galio-framework";
 
 import AppContainer from "./navigation/Screens";
 import { Images, products, materialTheme } from "./constants/";
-import store from "./redux/store";
+import store from "./modules/store";
 import { Provider } from "react-redux";
 
 // cache app images
