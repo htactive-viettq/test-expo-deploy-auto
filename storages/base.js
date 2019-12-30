@@ -1,7 +1,15 @@
-async function save(key, value) {}
+import { AsyncStorage } from "react-native";
 
-async function get(key) {}
+async function save(key, value) {
+  await AsyncStorage.setItem(key, value);
+}
 
-async function destroy(key) {}
+async function get(key) {
+  return await AsyncStorage.getItem(key);
+}
+
+async function destroy(key) {
+  await AsyncStorage.removeItem(key);
+}
 
 export { save, get, destroy };

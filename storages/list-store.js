@@ -5,7 +5,7 @@ async function saveListStore(ListStore) {
 }
 
 async function getListStore() {
-  get("ListStore");
+  return await get("ListStore");
 }
 
 async function destroyListStore() {

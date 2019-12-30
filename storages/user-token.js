@@ -5,7 +5,7 @@ async function saveUser(user) {
 }
 
 async function getUser() {
-  get("User");
+  return await get("User");
 }
 
 async function destroyUser() {

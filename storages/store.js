@@ -5,7 +5,7 @@ async function saveStore(Store) {
 }
 
 async function getStore() {
-  get("Store");
+  return await get("Store");
 }
 
 async function destroyStore() {
