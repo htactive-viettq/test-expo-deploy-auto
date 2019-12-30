@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import {
   ImageBackground,
-  Image,
   StyleSheet,
   StatusBar,
   Dimensions,
-  Platform,
-  View
+  Platform
 } from "react-native";
 import {
   Block,
@@ -61,7 +59,12 @@ const LoginScreen = ({ navigation, login }) => {
           />
         </ImageBackground>
 
-        <KeyboardAvoidingView style={styles.padded} behavior="padding" enabled>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={Platform.OS === "android" ? -70 : 40}
+          style={styles.padded}
+          behavior="position"
+          enabled
+        >
           <Block space="between">
             <Block>
               <Block>
@@ -106,6 +109,7 @@ const LoginScreen = ({ navigation, login }) => {
                   viewPass
                   left
                   iconContent={iconPassword}
+                  returnKeyType="done"
                   color="black"
                   placeholder="Mật khẩu"
                 />
