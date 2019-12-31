@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
-  Image,
   StyleSheet,
   StatusBar,
   Dimensions,
-  Platform,
-  View
+  Platform
 } from "react-native";
 import {
   Block,
@@ -19,12 +17,18 @@ import {
 } from "galio-framework";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAvoidingView } from "react-native";
-
-const { height, width } = Dimensions.get("screen");
+import { connect } from "react-redux";
+import { loginRequestAction } from "../modules/actions";
 import { Images, materialTheme } from "../constants/";
 import { HeaderHeight } from "../constants/utils";
 
-const LoginScreen = ({ navigation }) => {
+const { height, width } = Dimensions.get("screen");
+
+const LoginScreen = ({ loginRequestAction, navigation }) => {
+  const [account, setAccount] = useState("");
+  const [password, setPassword] = useState("");
+  const [remember, setRemenber] = useState(true);
+
   const iconUsername = (
     <Icon
       size={16}
@@ -55,7 +59,12 @@ const LoginScreen = ({ navigation }) => {
           />
         </ImageBackground>
 
-        <KeyboardAvoidingView style={styles.padded} behavior="padding" enabled>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={Platform.OS === "android" ? -70 : 40}
+          style={styles.padded}
+          behavior="position"
+          enabled
+        >
           <Block space="between">
             <Block>
               <Block>
@@ -88,23 +97,30 @@ const LoginScreen = ({ navigation }) => {
               >
                 <Input
                   left
+                  onChangeText={text => setAccount(text)}
+                  type="number-pad"
                   color="black"
                   iconContent={iconUsername}
                   placeholder="Số điện thoại"
                 />
                 <Input
                   password
+                  onChangeText={text => setPassword(text)}
                   viewPass
                   left
                   iconContent={iconPassword}
+                  returnKeyType="done"
                   color="black"
                   placeholder="Mật khẩu"
                 />
               </Block>
               <Block style={{ marginBottom: theme.SIZES.BASE * 1.5 }}>
                 <Checkbox
-                  color="warning"
-                  labelStyle={{ color: "#fff" }}
+                  initialValue={remember}
+                  onChange={value => {
+                    setRemenber(value);
+                  }}
+                  labelStyle={{ color: materialTheme.COLORS.WHITE }}
                   label="Ghi nhớ mật khẩu"
                 />
               </Block>
@@ -112,7 +128,10 @@ const LoginScreen = ({ navigation }) => {
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
-                onPress={() => navigation.navigate("Home")}
+                onPress={() => {
+                  // navigation.navigate("Home")
+                  loginRequestAction({ account, password, remember })
+                }}
               >
                 ĐĂNG NHẬP
               </Button>
@@ -124,7 +143,9 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
-export default LoginScreen;
+export default connect(null, {
+  loginRequestAction
+})(LoginScreen);
 
 const styles = StyleSheet.create({
   container: {
