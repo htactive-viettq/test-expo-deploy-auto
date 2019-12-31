@@ -25,8 +25,8 @@ import { HeaderHeight } from "../constants/utils";
 const { height, width } = Dimensions.get("screen");
 
 const LoginScreen = ({ loginRequestAction, navigation }) => {
-  const [account, setAccount] = useState("");
-  const [password, setPassword] = useState("");
+  const [account, setAccount] = useState("0905809000");
+  const [password, setPassword] = useState("nguyenhongha");
   const [remember, setRemenber] = useState(true);
 
   const iconUsername = (
@@ -97,6 +97,7 @@ const LoginScreen = ({ loginRequestAction, navigation }) => {
               >
                 <Input
                   left
+                  value={account}
                   onChangeText={text => setAccount(text)}
                   type="number-pad"
                   color="black"
@@ -105,6 +106,7 @@ const LoginScreen = ({ loginRequestAction, navigation }) => {
                 />
                 <Input
                   password
+                  value={account}
                   onChangeText={text => setPassword(text)}
                   viewPass
                   left
@@ -130,7 +132,7 @@ const LoginScreen = ({ loginRequestAction, navigation }) => {
                 color={materialTheme.COLORS.BUTTON_COLOR}
                 onPress={() => {
                   // navigation.navigate("Home")
-                  loginRequestAction({ account, password, remember })
+                  loginRequestAction({ account, password, remember });
                 }}
               >
                 ĐĂNG NHẬP
