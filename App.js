@@ -18,6 +18,8 @@ import { Asset } from "expo-asset";
 import { Block, GalioProvider } from "galio-framework";
 
 import AppContainer from "./navigation/Screens";
+import NavigationService from './navigation/NavigationService';
+
 import { Images, products, materialTheme } from "./constants/";
 import store from "./modules/store";
 import { Provider } from "react-redux";
@@ -63,7 +65,9 @@ export default class App extends React.Component {
           <Block flex>
             {Platform.OS === "ios" && <StatusBar barStyle="default" />}
             <Provider store={store}>
-              <AppContainer />
+              <AppContainer ref={navigatorRef => {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+              }} />
             </Provider>
           </Block>
         </GalioProvider>

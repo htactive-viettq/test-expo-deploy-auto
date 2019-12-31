@@ -4,6 +4,7 @@ import { loginRequestAction } from "../actions";
 import { login } from "../../api/login";
 import { saveCurrentUser } from "../actions/auth";
 import { saveCurrentStoreList } from "../actions/store-list";
+import NavigationService from '../../navigation/NavigationService';
 
 function* loginRequestHandle({ payload: {
   account,
@@ -13,10 +14,11 @@ function* loginRequestHandle({ payload: {
   const loginResult = yield call(login, account, password, remember);
   console.log(loginResult);
   if (loginResult.success) {
-    // yield put(saveCurrentUser(loginResult.account));
-    // yield put(saveCurrentStoreList(loginResult.stores));
-    yield put(NavigationActions.navigate("Home"));
+    yield put(saveCurrentUser(loginResult.account));
+    yield put(saveCurrentStoreList(loginResult.stores));
+    NavigationService.navigate('Home');
   }
+
 }
 
 export default function* () {
