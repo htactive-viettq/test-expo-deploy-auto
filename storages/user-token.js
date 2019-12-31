@@ -1,7 +1,7 @@
 import { save, destroy, get } from "./base";
 
 async function saveUser(user) {
-  save("User", user);
+  await save("User", user);
 }
 
 async function getUser() {
@@ -9,7 +9,7 @@ async function getUser() {
 }
 
 async function destroyUser() {
-  destroy("User");
+  await destroy("User");
 }
 
 export { saveUser, destroyUser, getUser };

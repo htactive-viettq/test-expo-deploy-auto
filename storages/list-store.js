@@ -1,7 +1,7 @@
 import { save, destroy, get } from "./base";
 
 async function saveListStore(ListStore) {
-  save("ListStore", ListStore);
+  await save("ListStore", ListStore);
 }
 
 async function getListStore() {
@@ -9,7 +9,7 @@ async function getListStore() {
 }
 
 async function destroyListStore() {
-  destroy("ListStore");
+  await destroy("ListStore");
 }
 
 export { saveListStore, destroyListStore, getListStore };

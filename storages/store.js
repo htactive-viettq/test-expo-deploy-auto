@@ -1,7 +1,7 @@
 import { save, destroy, get } from "./base";
 
 async function saveStore(Store) {
-  save("Store", Store);
+  await save("Store", Store);
 }
 
 async function getStore() {
@@ -9,7 +9,7 @@ async function getStore() {
 }
 
 async function destroyStore() {
-  destroy("Store");
+  await destroy("Store");
 }
 
 export { saveStore, destroyStore, getStore };

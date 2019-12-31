@@ -18,13 +18,13 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAvoidingView } from "react-native";
 import { connect } from "react-redux";
-import { LOGIN_REQUEST } from "../modules/actions";
+import { loginRequestAction } from "../modules/actions";
 import { Images, materialTheme } from "../constants/";
 import { HeaderHeight } from "../constants/utils";
 
 const { height, width } = Dimensions.get("screen");
 
-const LoginScreen = ({ navigation, login }) => {
+const LoginScreen = ({ loginRequestAction, navigation }) => {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemenber] = useState(true);
@@ -128,7 +128,10 @@ const LoginScreen = ({ navigation, login }) => {
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
-                onPress={() => login(account, password, remember)}
+                onPress={() => {
+                  // navigation.navigate("Home")
+                  loginRequestAction({ account, password, remember })
+                }}
               >
                 ĐĂNG NHẬP
               </Button>
@@ -140,14 +143,9 @@ const LoginScreen = ({ navigation, login }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  login: (account, password, remember) =>
-    dispatch({
-      type: LOGIN_REQUEST,
-      infoLogin: { account, password, remember }
-    })
-});
-export default connect(null, mapDispatchToProps)(LoginScreen);
+export default connect(null, {
+  loginRequestAction
+})(LoginScreen);
 
 const styles = StyleSheet.create({
   container: {

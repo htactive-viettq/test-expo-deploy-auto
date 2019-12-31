@@ -6,6 +6,7 @@ import { Icon, Product } from "../components/";
 
 const { width } = Dimensions.get("screen");
 import products from "../constants/products";
+import { NavigationActions } from "react-navigation";
 
 export default class Home extends React.Component {
   renderSearch = () => {
@@ -39,7 +40,11 @@ export default class Home extends React.Component {
         <Button
           shadowless
           style={[styles.tab, styles.divider]}
-          onPress={() => navigation.navigate("Pro")}
+          onPress={() => {
+            navigation.dispatch(NavigationActions.navigate("Pro"))
+            // navigation.navigate("Pro")
+          }
+          }
         >
           <Block row middle>
             <Icon name="grid" family="feather" style={{ paddingRight: 8 }} />
