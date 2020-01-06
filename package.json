@@ -4,6 +4,7 @@
   "description": "Viet Bill Application",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "appr": "appr",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -31,7 +32,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "babel-preset-expo": "~8.0.0"
+    "appr": "^2.0.0",
+    "babel-preset-expo": "~8.0.0",
+    "exp": "^57.2.1"
   },
   "private": true
 }

@@ -66,7 +66,7 @@ export default class Home extends React.Component {
               style={{ paddingRight: 8 }}
             />
             <Text size={16} style={styles.tabTitle}>
-              Best Deals
+              Best Dealsss
             </Text>
           </Block>
         </Button>
