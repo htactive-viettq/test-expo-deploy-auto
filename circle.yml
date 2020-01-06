@@ -1,0 +1,11 @@
+dependencies:
+  override:
+    - yarn
+machine:
+  node:
+    version: 10.12
+deployment:
+  appr:
+    branch: /.*/
+    commands:
+      - 'if [ "$CI_PULL_REQUEST" != "" ]; then yarn appr; fi'
