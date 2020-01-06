@@ -3,7 +3,7 @@ dependencies:
     - yarn
 machine:
   node:
-    version: 6.9
+    version: 10.12
 deployment:
   appr:
     branch: /.*/
